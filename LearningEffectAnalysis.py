@@ -35,6 +35,7 @@ required_packages = [
     'numpy',
     'scipy',
     'xlsxwriter'
+    'openpyxl',  # For reading/writing Excel files
 ]
 
 for pkg in required_packages:
