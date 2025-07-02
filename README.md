@@ -20,7 +20,7 @@ pip install -r requirements.txt
 Launch the graphical interface with:
 
 ```bash
-python src/LearningEffectAnalysis.py
+python main.py
 ```
 
 The application will open a window that allows you to choose analysis options and export results.
