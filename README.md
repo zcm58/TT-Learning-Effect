@@ -1,3 +1,6 @@
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 # TT-Learning-Effect
 
@@ -12,7 +15,6 @@ Install the required Python packages using pip:
 pip install -r requirements.txt
 ```
 
-
 ## Usage
 
 Launch the graphical interface with:
@@ -24,4 +26,3 @@ python src/LearningEffectAnalysis.py
 The application will open a window that allows you to choose analysis options and export results.
 
 For a short description of the underlying scripts, see [src/README.md](src/README.md).
-
