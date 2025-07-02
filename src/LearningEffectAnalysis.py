@@ -325,10 +325,10 @@ class TrialAnalyzerApp(ctk.CTk):
         self.results_df = None
 
         # --- Build Menu Bar ---
-        menu = tkinter.Menu(self);
+        menu = tkinter.Menu(self)
         file_menu = tkinter.Menu(menu, tearoff=0)
         file_menu.add_command(label="Exit", command=self.quit)
-        menu.add_cascade(label="File", menu=file_menu);
+        menu.add_cascade(label="File", menu=file_menu)
         self.config(menu=menu)
 
         # --- Build Input Frame ---
@@ -409,7 +409,7 @@ class TrialAnalyzerApp(ctk.CTk):
             self.outcome_dropdown.grid(row=2, column=1, sticky="w", padx=5, pady=5)
 
     def _log(self, message: str):
-        self.log_box.insert("end", message + "\n");
+        self.log_box.insert("end", message + "\n")
         self.log_box.see("end")
 
     def browse_data_folder(self):
@@ -450,10 +450,10 @@ class TrialAnalyzerApp(ctk.CTk):
         """The target function that runs the analysis in the background."""
         try:
             if not params['data_root'].is_dir():
-                self._log("Error: Data Root directory not found.");
+                self._log("Error: Data Root directory not found.")
                 return
             if params['mode'] == 'timeline' and not params['timeline_dir'].is_dir():
-                self._log("Error: Timeline directory not found.");
+                self._log("Error: Timeline directory not found.")
                 return
 
             self._log("Analysis started...")
@@ -488,7 +488,7 @@ class TrialAnalyzerApp(ctk.CTk):
     def export(self):
         """Exports the analysis results DataFrame to a formatted Excel file."""
         if self.results_df is None or self.results_df.empty:
-            messagebox.showwarning("No Results", "There are no results to export.");
+            messagebox.showwarning("No Results", "There are no results to export.")
             return
         filepath = filedialog.asksaveasfilename(
             defaultextension=".xlsx",
