@@ -31,17 +31,6 @@ def pulse(widget: ctk.CTkBaseClass, color: str = "#90C2FF", duration: int = 200)
     widget.after(duration, lambda: widget.configure(fg_color=orig))
 
 
-def fade_log(textbox: ctk.CTkTextbox, tag: str, steps: int = 10, delay: int = 50) -> None:
-    """Fade a tagged log line from gray to black to draw attention."""
-    def step(i: int) -> None:
-        level = 55 + int((200 / steps) * i)
-        color = f"#{level:02x}{level:02x}{level:02x}"
-        textbox.tag_config(tag, foreground=color)
-        if i < steps:
-            textbox.after(delay, step, i + 1)
-    step(0)
-
-
 def slide_window(win: ctk.CTkToplevel, end_y: int, step: int = 10, delay: int = 10) -> None:
     """Animate a toplevel window sliding down from the top."""
     x = win.winfo_x()
