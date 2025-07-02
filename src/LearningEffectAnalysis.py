@@ -84,11 +84,11 @@ class TrialAnalyzerApp(ctk.CTk):
         ctk.CTkEntry(self.input_frame, textvariable=self.n_var, width=80).grid(row=3, column=1, sticky="w", padx=5, pady=5)
 
         # --- Build Action Buttons Frame ---
-        btn_frame = ctk.CTkFrame(self)
-        btn_frame.pack(fill="x", padx=20)
-        self.run_btn = ctk.CTkButton(btn_frame, text="Run Analysis", command=self.start_analysis)
+        self.btn_frame = ctk.CTkFrame(self)
+        self.btn_frame.pack(fill="x", padx=20)
+        self.run_btn = ctk.CTkButton(self.btn_frame, text="Run Analysis", command=self.start_analysis)
         self.run_btn.pack(side="left", pady=10)
-        self.export_btn = ctk.CTkButton(btn_frame, text="Export Results", state="disabled", command=self.export)
+        self.export_btn = ctk.CTkButton(self.btn_frame, text="Export Results", state="disabled", command=self.export)
         self.export_btn.pack(side="left", padx=10)
         self.progress = ctk.CTkProgressBar(btn_frame, mode="indeterminate")
         self.progress.pack(side="left", fill="x", expand=True, padx=10)
@@ -100,6 +100,7 @@ class TrialAnalyzerApp(ctk.CTk):
         self.log_box.pack(padx=20, pady=10, fill="both", expand=True)
 
         self.toggle_mode()
+
 
     # ------------------------------------------------------------------
     # GUI helper methods
@@ -125,6 +126,7 @@ class TrialAnalyzerApp(ctk.CTk):
     def _log(self, message: str) -> None:
         tag = f"line_{self.log_box.index('end')}"
         self.log_box.insert("end", message + "\n", tag)
+
         self.log_box.see("end")
         anim.fade_log(self.log_box, tag)
 
