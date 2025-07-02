@@ -29,6 +29,7 @@ class TrialAnalyzerApp(ctk.CTk):
     """Main application window for the Trial Analyzer."""
 
     def __init__(self) -> None:
+        """Initialize the GUI components and application state."""
         super().__init__()
         self.title("Trial Analyzer")
         self.geometry("800x700")
@@ -90,7 +91,7 @@ class TrialAnalyzerApp(ctk.CTk):
         self.run_btn.pack(side="left", pady=10)
         self.export_btn = ctk.CTkButton(self.btn_frame, text="Export Results", state="disabled", command=self.export)
         self.export_btn.pack(side="left", padx=10)
-        self.progress = ctk.CTkProgressBar(btn_frame, mode="indeterminate")
+        self.progress = ctk.CTkProgressBar(self.btn_frame, mode="indeterminate")
         self.progress.pack(side="left", fill="x", expand=True, padx=10)
         self.progress.stop()
         self.progress.pack_forget()
@@ -124,6 +125,7 @@ class TrialAnalyzerApp(ctk.CTk):
         anim.fade_window(self, update_widgets)
 
     def _log(self, message: str) -> None:
+        """Append a timestamped message to the log textbox."""
         tag = f"line_{self.log_box.index('end')}"
         self.log_box.insert("end", message + "\n", tag)
 
@@ -131,16 +133,19 @@ class TrialAnalyzerApp(ctk.CTk):
         anim.fade_log(self.log_box, tag)
 
     def browse_data_folder(self) -> None:
+        """Prompt the user to select the root directory containing trial data."""
         path = filedialog.askdirectory(title="Select Trial Data Root Folder")
         if path:
             self.data_root_var.set(path)
 
     def browse_timeline_folder(self) -> None:
+        """Prompt the user to choose the folder with all timeline files."""
         path = filedialog.askdirectory(title="Select Folder Containing All Timeline Files")
         if path:
             self.timeline_dir_var.set(path)
 
     def save_defaults(self) -> None:
+        """Persist the currently selected paths as defaults."""
         data_path = self.data_root_var.get()
         timeline_path = self.timeline_dir_var.get()
         if not Path(data_path).is_dir():
