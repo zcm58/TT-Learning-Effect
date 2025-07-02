@@ -23,9 +23,6 @@ The application performs the following key operations:
 # =============================================================================
 # SECTION 1: DEPENDENCY MANAGEMENT
 # =============================================================================
-import importlib
-import subprocess
-import sys
 import tkinter
 import re
 
