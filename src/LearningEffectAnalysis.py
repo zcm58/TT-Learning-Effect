@@ -127,12 +127,9 @@ class TrialAnalyzerApp(ctk.CTk):
         update_widgets()
 
     def _log(self, message: str) -> None:
-        """Append a timestamped message to the log textbox."""
-        tag = f"line_{self.log_box.index('end')}"
-        self.log_box.insert("end", message + "\n", tag)
-
+        """Append a message to the log textbox."""
+        self.log_box.insert("end", message + "\n")
         self.log_box.see("end")
-        anim.fade_log(self.log_box, tag)
 
     def browse_data_folder(self) -> None:
         """Prompt the user to select the root directory containing trial data."""
