@@ -245,6 +245,11 @@ class TrialAnalyzerApp(ctk.CTk):
             self._log(traceback.format_exc())
 
 
-if __name__ == "__main__":
+def launch_app() -> None:
+    """Launch the graphical Trial Analyzer application."""
     app = TrialAnalyzerApp()
     app.mainloop()
+
+
+if __name__ == "__main__":
+    launch_app()
