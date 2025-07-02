@@ -107,8 +107,9 @@ class TrialAnalyzerApp(ctk.CTk):
     # GUI helper methods
     # ------------------------------------------------------------------
     def toggle_mode(self) -> None:
-        """Animate switching between analysis modes."""
+        """Switch between analysis modes and show relevant widgets."""
         mode = self.analysis_mode_var.get()
+
         def update_widgets() -> None:
             if mode == "timeline":
                 self.timeline_label.grid()
@@ -122,7 +123,8 @@ class TrialAnalyzerApp(ctk.CTk):
                 self.timeline_browse_btn.grid_remove()
                 self.outcome_label.grid(row=2, column=0, sticky="w", padx=5, pady=5)
                 self.outcome_dropdown.grid(row=2, column=1, sticky="w", padx=5, pady=5)
-        anim.fade_window(self, update_widgets)
+
+        update_widgets()
 
     def _log(self, message: str) -> None:
         """Append a timestamped message to the log textbox."""
