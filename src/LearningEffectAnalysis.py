@@ -29,22 +29,6 @@ import sys
 import tkinter
 import re
 
-required_packages = [
-    'customtkinter',
-    'pandas',
-    'numpy',
-    'scipy',
-    'xlsxwriter'
-    'openpyxl',  # For reading/writing Excel files
-]
-
-for pkg in required_packages:
-    try:
-        importlib.import_module(pkg)
-    except ImportError:
-        print(f"Installing missing package: {pkg}")
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', pkg])
-
 # =============================================================================
 # SECTION 2: IMPORTS
 # =============================================================================
