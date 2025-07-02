@@ -10,6 +10,9 @@ import customtkinter as ctk
 import pandas as pd
 from tkinter import filedialog, messagebox
 
+# Approximate green used by default Windows progress bars
+WINDOWS_PROGRESS_GREEN = "#6aa84f"
+
 from analysis_core import (
     load_default_paths,
     save_default_paths,
@@ -91,7 +94,11 @@ class TrialAnalyzerApp(ctk.CTk):
         self.run_btn.pack(side="left", pady=10)
         self.export_btn = ctk.CTkButton(self.btn_frame, text="Export Results", state="disabled", command=self.export)
         self.export_btn.pack(side="left", padx=10)
-        self.progress = ctk.CTkProgressBar(self.btn_frame, mode="indeterminate")
+        self.progress = ctk.CTkProgressBar(
+            self.btn_frame,
+            mode="indeterminate",
+            progress_color=WINDOWS_PROGRESS_GREEN,
+        )
         self.progress.pack(side="left", fill="x", expand=True, padx=10)
         self.progress.stop()
         self.progress.pack_forget()
