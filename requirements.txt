@@ -1,0 +1,6 @@
+customtkinter
+pandas
+numpy
+scipy
+xlsxwriter
+openpyxl
