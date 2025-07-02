@@ -371,11 +371,11 @@ class TrialAnalyzerApp(ctk.CTk):
                                                                                pady=5)
 
         # --- Build Action Buttons Frame ---
-        btn_frame = ctk.CTkFrame(self)
-        btn_frame.pack(fill="x", padx=20)
-        self.run_btn = ctk.CTkButton(btn_frame, text="Run Analysis", command=self.start_analysis)
+        self.btn_frame = ctk.CTkFrame(self)
+        self.btn_frame.pack(fill="x", padx=20)
+        self.run_btn = ctk.CTkButton(self.btn_frame, text="Run Analysis", command=self.start_analysis)
         self.run_btn.pack(side="left", pady=10)
-        self.export_btn = ctk.CTkButton(btn_frame, text="Export Results", state="disabled", command=self.export)
+        self.export_btn = ctk.CTkButton(self.btn_frame, text="Export Results", state="disabled", command=self.export)
         self.export_btn.pack(side="left", padx=10)
 
         # --- Build Log Textbox ---
@@ -384,6 +384,9 @@ class TrialAnalyzerApp(ctk.CTk):
 
         # Set initial GUI state
         self.toggle_mode()
+
+        # Ensure the window is wide enough for all widgets
+        self._adjust_window_width()
 
     def toggle_mode(self):
         """Shows/hides GUI elements based on the selected analysis mode."""
@@ -404,6 +407,17 @@ class TrialAnalyzerApp(ctk.CTk):
             # Show outcome widgets
             self.outcome_label.grid(row=2, column=0, sticky="w", padx=5, pady=5)
             self.outcome_dropdown.grid(row=2, column=1, sticky="w", padx=5, pady=5)
+
+    def _adjust_window_width(self):
+        """Dynamically widens the window so all widgets remain visible."""
+        self.update_idletasks()
+        required_width = max(
+            self.input_frame.winfo_reqwidth(),
+            self.btn_frame.winfo_reqwidth(),
+            self.log_box.winfo_reqwidth(),
+        ) + 40
+        current_height = self.winfo_height() or 700
+        self.geometry(f"{required_width}x{current_height}")
 
     def _log(self, message: str):
         self.log_box.insert("end", message + "\n")
